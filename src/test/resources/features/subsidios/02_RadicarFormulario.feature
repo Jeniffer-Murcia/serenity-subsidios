@@ -3,22 +3,36 @@ Feature: Radicación del formulario de subsidios
   Quiero radicar el formulario inicial
   Para continuar con la postulación
 
-  @TC_006
-  Scenario: Ingresar datos básicos de identificación
-    Given el usuario está en la pantalla de radicación de formulario
-    When ingresa el tipo de identificación "NIT"
-    And escribe el número de identificación "900123456"
-    And escribe el dígito de verificación "5"
-    Then los campos de identificación muestran la información ingresada
+  Background:
+    Given el cliente abre la página de subsidios
+    When selecciona el programa "Programa Empleo para la vida"
+    And cierra la ventana emergente "Antes de comenzar"
 
-  @TC_007
-  Scenario: Seleccionar el mes de postulación
-    Given el usuario completó la información de identificación
-    When selecciona el mes "Mayo - Periodo 43" del menú desplegable
+  @TC_004
+  Scenario: Ingreso de credenciales válidas para radicar formulario
+    Given selecciona la opción "Radicar formulario"
+    When selecciona el tipo de documento "N"
+    And ingresa el número de identificación "901562458"
+    And ingresa el dígito de verificación "9"
+    And selecciona el mes de postulación "Mayo"
+    Then hace clic en el botón continuar
+
+  @Wip
+  @TC_005
+  Scenario: Validar error al no ingresar número de identificación errado
+    Given selecciona la opción "Radicar formulario"
+    When selecciona el tipo de documento "C"
+    And se ingresa la información errada
+    Then el sistema muestra el mensaje "Debe ingresar el número de identificación"
+
+  @TC_006
+  Scenario: Seleccionar mes de postulación
+    Given selecciona la opción "Radicar formulario"
+    And completa la identificación con datos válidos
+    When selecciona el mes "Mayo"
+    And el cliente hace clic en "Continuar"
     Then el sistema refleja la selección realizada
 
-  @TC_008
-  Scenario: Continuar con la radicación del formulario
-    Given el usuario ha diligenciado identificación y mes de postulación
-    When hace clic en el botón "Continuar"
-    Then el sistema muestra la pantalla de Preguntas Iniciales
+    @Wip
+    @TC_008
+    Scenario: Escenario pendiente

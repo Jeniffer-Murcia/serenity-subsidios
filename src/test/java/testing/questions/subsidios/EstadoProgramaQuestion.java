@@ -4,15 +4,15 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.Question;
 import net.serenitybdd.screenplay.questions.Text;
 
-import static testing.ui.subsidios.EstadoAbierto.ESTADO_PROGRAMA_ABIERTO;
+import static testing.ui.subsidios.AbrirPaginaUI.ESTADO_PROGRAMA;
 
-public class EstadoPrograma implements Question<String> {
+public class EstadoProgramaQuestion implements Question<String> {
     @Override
     public String answeredBy(Actor actor) {
-        return Text.of(ESTADO_PROGRAMA_ABIERTO).answeredBy(actor).toString().trim().replaceAll("\\s+", " ");
+        return Text.of(ESTADO_PROGRAMA).answeredBy(actor).toString().trim().replaceAll("\\s+", " ");
     }
 
     public static  Question<String> textoEstadoAbierto() {
-        return new EstadoPrograma();
+        return new EstadoProgramaQuestion();
     }
 }
